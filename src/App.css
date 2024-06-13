@@ -1,0 +1,127 @@
+body {
+  background: #171717;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+#root {
+  /* max-width: 1280px; */
+  margin: 0 2%;
+  text-align: center;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.movieList {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  gap: 15px;
+  padding: 0 2%;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.pageButton {
+  border: 1px solid white;
+  padding: 10px 15px;
+}
+.navbar {
+  position: fixed;
+  top: -50px;
+  background-image: url("https://test.create.diagnal.com/images/nav_bar.png");
+  width: 95%;
+  justify-content: space-between;
+  height: 168px;
+}
+.childNav {
+  margin-top: 50px;
+  width: 30%;
+  height: 25%;
+  align-items: center;
+}
+.movieContent {
+  margin-top: 70px;
+}
+.backButton {
+  width: 30px;
+  height: 30px;
+  padding: auto 0;
+}
+.movie {
+  width: 200px;
+}
+.genre {
+  font-size: 25px;
+  font-weight: 700;
+}
+.txt-right {
+  justify-content: flex-end;
+}
+.movieImg {
+  max-width: 182px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .movieImg {
+    width: 100px;
+    height: 175px;
+  }
+  .movie {
+    width: 100px;
+  }
+  .backButton {
+    width: 20px;
+    height: 20px;
+    padding: auto 0;
+  }
+  .lgInput {
+    display: none;
+  }
+  .genre {
+    font-size: 15px;
+  }
+  .childNav {
+    padding: 10px 5px;
+    width: 50%;
+  }
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
