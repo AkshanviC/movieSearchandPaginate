@@ -2,24 +2,16 @@ import { useContext, useState } from "react";
 import { MovieContext } from "../../context/context";
 
 export default function SearchFn() {
-  const {
-    setSearch,
-    setSeachCount,
-    setIsSearch,
-    others,
-    isSearch,
-    search,
-    searchData,
-  } = useContext(MovieContext);
+  const { setSearch, setIsSearch, others, isSearch, search, searchData } =
+    useContext(MovieContext);
   const [dissapper, setDissapper] = useState(true);
   return (
     <div className="flex-row navbar">
       <div className="flex-row childNav ">
         <img
           onClick={() => {
-            setIsSearch(false);
-            setSeachCount("");
             setSearch("");
+            setIsSearch(false);
             setDissapper(true);
           }}
           className="backButton"
