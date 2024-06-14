@@ -16,7 +16,6 @@ export default function ApiGet(
         ...count,
         ...res?.data?.page["content-items"]?.content,
       ]);
-      //   console.log(currentPage, "currentPage", page);
       if (page === 1) {
         pageCount =
           res?.data?.page["total-content-items"] / 20 >
