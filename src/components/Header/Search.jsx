@@ -22,14 +22,27 @@ export default function SearchFn() {
       </div>
       <div className="flex-row childNav txt-right">
         {isSearch ? (
-          <input
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-              if (e.target.value === "") setDissapper(true);
-            }}
-            maxLength={30}
-          />
+          <div className="flex-row searchDiv">
+            <input
+              className="search"
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                if (e.target.value === "") setDissapper(true);
+              }}
+              maxLength={30}
+            />
+            <span
+              className="cancel"
+              onClick={() => {
+                setSearch("");
+                setIsSearch(false);
+                setDissapper(true);
+              }}
+            >
+              X
+            </span>
+          </div>
         ) : (
           <img
             onClick={() => setIsSearch(true)}

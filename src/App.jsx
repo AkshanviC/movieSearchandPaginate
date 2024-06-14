@@ -63,24 +63,24 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
-        <MovieContext.Provider
-          value={{
-            setSearch,
-            setSearchData,
-            setIsSearch,
-            others,
-            isSearch,
-            searchData,
-            count,
-            search,
-          }}
-        >
-          <SearchFn />
+      {/* <Suspense fallback={<div>Loading...</div>}> */}
+      <MovieContext.Provider
+        value={{
+          setSearch,
+          setSearchData,
+          setIsSearch,
+          others,
+          isSearch,
+          searchData,
+          count,
+          search,
+        }}
+      >
+        <SearchFn />
 
-          <ImageHandler />
-        </MovieContext.Provider>
-      </Suspense>
+        <ImageHandler />
+      </MovieContext.Provider>
+      {/* </Suspense> */}
     </>
   );
 }

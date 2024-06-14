@@ -15,7 +15,6 @@ body {
 .flex-row {
   display: flex;
   flex-direction: row;
-  gap: 10px;
 }
 .flex-clmn {
   display: flex;
@@ -35,12 +34,14 @@ body {
   justify-content: space-between;
   height: 168px;
   padding: 0 1%;
+  gap: 10px;
 }
 .childNav {
   margin-top: 50px;
   width: 30%;
   height: 25%;
   align-items: center;
+  gap: 10px;
 }
 .backButton {
   width: 30px;
@@ -50,6 +51,19 @@ body {
 .genre {
   font-size: 25px;
   font-weight: 500;
+}
+.searchDiv {
+  border: 1px solid #fff;
+}
+.search {
+  border: 0;
+  outline: none;
+}
+.cancel {
+  color: #fff;
+  font-weight: 400;
+  background: transparent;
+  padding: 0 4px;
 }
 
 /* movie grid */
