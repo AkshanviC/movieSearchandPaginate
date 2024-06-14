@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Fuse from "fuse.js";
 import "./App.css";
 import ApiGet from "./api/api";
@@ -34,8 +34,6 @@ function App() {
         document.body.scrollHeight - threshold <= scrolledTo;
       if (isReachBottom) {
         setScrollUpdate((scroll) => scroll + 1);
-      } else {
-        console.log(currentPage, page);
       }
     };
     window.addEventListener("scroll", onscroll);
@@ -44,7 +42,7 @@ function App() {
     };
   }, []);
   useEffect(() => {
-    if (currentPage <= page) {
+    if (currentPage < page) {
       if (initialThrottle) {
         setCurrentPage(currentPage + 1);
         ApiGet(currentPage + 1, setCount, setPage, page, setOthers);
@@ -65,20 +63,24 @@ function App() {
 
   return (
     <>
-      <MovieContext.Provider
-        value={{
-          setSearch,
-          setSearchData,
-          setIsSearch,
-          others,
-          isSearch,
-          searchData,
-          count,
-        }}
-      >
-        <SearchFn />
-        <ImageHandler />
-      </MovieContext.Provider>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MovieContext.Provider
+          value={{
+            setSearch,
+            setSearchData,
+            setIsSearch,
+            others,
+            isSearch,
+            searchData,
+            count,
+            search,
+          }}
+        >
+          <SearchFn />
+
+          <ImageHandler />
+        </MovieContext.Provider>
+      </Suspense>
     </>
   );
 }

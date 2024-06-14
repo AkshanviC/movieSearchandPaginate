@@ -9,7 +9,10 @@ export default function ImageHandler() {
         searchData.length ? (
           <div className="movieList">
             {searchData.map((data) => (
-              <div className="movie" key={Math.floor(Math.random() * 734533)}>
+              <div
+                className="movie"
+                key={Math.floor(Math.random() * 734531893)}
+              >
                 <img
                   className="movieImg"
                   loading="lazy"
@@ -24,12 +27,14 @@ export default function ImageHandler() {
             ))}
           </div>
         ) : (
-          <p>Sorry the searched content is unavailable</p>
+          <p className="unavailable">
+            Sorry the searched content is unavailable
+          </p>
         )
       ) : (
         <div className="movieList">
           {count?.map((data) => (
-            <div className="movie" key={Math.floor(Math.random() * 734533)}>
+            <div className="movie" key={Math.floor(Math.random() * 734531893)}>
               <img
                 className="movieImg"
                 loading="lazy"

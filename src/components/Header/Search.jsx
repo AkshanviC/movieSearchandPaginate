@@ -1,9 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MovieContext } from "../../context/context";
 
 export default function SearchFn() {
-  const { setSearch, setSeachCount, setIsSearch, others, isSearch } =
-    useContext(MovieContext);
+  const {
+    setSearch,
+    setSeachCount,
+    setIsSearch,
+    others,
+    isSearch,
+    search,
+    searchData,
+  } = useContext(MovieContext);
+  const [dissapper, setDissapper] = useState(true);
   return (
     <div className="flex-row navbar">
       <div className="flex-row childNav ">
@@ -12,6 +20,7 @@ export default function SearchFn() {
             setIsSearch(false);
             setSeachCount("");
             setSearch("");
+            setDissapper(true);
           }}
           className="backButton"
           src="https://test.create.diagnal.com/images/Back.png"
@@ -22,8 +31,11 @@ export default function SearchFn() {
       <div className="flex-row childNav txt-right">
         {isSearch ? (
           <input
-            value={seach}
-            onChange={(e) => setSeach(e.target.value)}
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              if (e.target.value === "") setDissapper(true);
+            }}
             maxLength={40}
           />
         ) : (
@@ -33,6 +45,22 @@ export default function SearchFn() {
             src="https://test.create.diagnal.com/images/search.png"
             alt="no img"
           />
+        )}
+        {searchData && dissapper ? (
+          <div className="dropdown">
+            {searchData.slice(0, 3).map((data) => (
+              <div
+                onClick={() => {
+                  setDissapper(false);
+                  setSearch(data.name);
+                }}
+              >
+                {data.name}
+              </div>
+            ))}
+          </div>
+        ) : (
+          ""
         )}
       </div>
     </div>
