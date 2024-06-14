@@ -2,7 +2,16 @@ import { useContext } from "react";
 import { MovieContext } from "../../context/context";
 
 export default function ImageHandler() {
-  const { searchData, count } = useContext(MovieContext);
+  const { searchData, count, search } = useContext(MovieContext);
+  const highlightText = (text, query) => {
+    // Escape the query string for regular expression usage
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(`(${escapedQuery})`, "gi"); // Case-insensitive global search
+    return text.replace(
+      regex,
+      (match) => `<span class="highlight">${match}</span>`
+    );
+  };
   return (
     <div className="movieContent">
       {searchData ? (
@@ -22,7 +31,12 @@ export default function ImageHandler() {
                       "https://test.create.diagnal.com/images/placeholder_for_missing_posters.png")
                   }
                 />
-                <p>{data?.name}</p>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: highlightText(data.name, search),
+                  }}
+                />
+                {/* <span>{data?.name}</span> */}
               </div>
             ))}
           </div>
@@ -34,7 +48,10 @@ export default function ImageHandler() {
       ) : (
         <div className="movieList">
           {count?.map((data) => (
-            <div className="movie" key={Math.floor(Math.random() * 734531893)}>
+            <div
+              className="flex-clmn movie"
+              key={Math.floor(Math.random() * 734531893)}
+            >
               <img
                 className="movieImg"
                 loading="lazy"
@@ -44,7 +61,7 @@ export default function ImageHandler() {
                     "https://test.create.diagnal.com/images/placeholder_for_missing_posters.png")
                 }
               />
-              <p className="movieTitle">{data?.name}</p>
+              <span className="movieTitle">{data?.name}</span>
             </div>
           ))}
         </div>

@@ -28,7 +28,7 @@ export default function SearchFn() {
               setSearch(e.target.value);
               if (e.target.value === "") setDissapper(true);
             }}
-            maxLength={40}
+            maxLength={30}
           />
         ) : (
           <img

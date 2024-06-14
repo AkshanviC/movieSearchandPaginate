@@ -7,6 +7,7 @@ body {
 #root {
   width: 100%;
   font-family: "Titillium Web", sans-serif;
+  color: #ffffff;
 }
 
 /* common css */
@@ -15,6 +16,10 @@ body {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+.flex-clmn {
+  display: flex;
+  flex-direction: column;
 }
 .pageButton {
   border: 1px solid white;
@@ -49,9 +54,14 @@ body {
 
 /* movie grid */
 .movieList {
-  display: grid;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+  justify-content: space-evenly;
+
+  /* display: grid;
   grid-template-columns: 33% 33% 33%;
-  gap: 15px 1px;
+  gap: 15px 1px; */
   padding: 0 2%;
   width: 96%;
 }
@@ -87,22 +97,30 @@ body {
   width: 50%;
 }
 
+.highlight {
+  background-color: yellow; /* Customize highlight style */
+  color: #171717;
+}
 /* media query */
 
 @media only screen and (max-width: 400px) {
   .movieImg {
-    width: 95px !important;
-    height: 155px;
+    width: 95px;
+    height: 142px;
   }
   .movie {
-    width: 95px !important;
+    width: 95px;
   }
   .genre {
     font-size: 10px;
   }
+  .movieTitle {
+    font-size: 12px;
+    font-weight: 200;
+  }
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 900px) and (min-width: 401px) {
   .movieImg {
     width: 110px;
     height: 175px;
