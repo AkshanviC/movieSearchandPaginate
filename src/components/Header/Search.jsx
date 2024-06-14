@@ -46,7 +46,7 @@ export default function SearchFn() {
             alt="no img"
           />
         )}
-        {searchData && dissapper ? (
+        {searchData.length && dissapper ? (
           <div className="dropdown">
             {searchData.slice(0, 3).map((data) => (
               <div
