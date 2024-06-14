@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   base: "/movieSearchandPaginate/",
   build: {
-    outDir: "../dist",
+    outDir: "docs",
   },
 });
