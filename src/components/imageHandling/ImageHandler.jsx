@@ -47,9 +47,13 @@ export default function ImageHandler() {
         )
       ) : (
         <div className="movieList">
-          {count?.map((data) => (
+          {count?.map((data, index) => (
             <div
-              className="flex-clmn movie"
+              className={`flex-clmn movie ${
+                count.length === index + 1 || count.length === index + 2
+                  ? "align-slf"
+                  : ""
+              }`}
               key={Math.floor(Math.random() * 734531893)}
             >
               <img
