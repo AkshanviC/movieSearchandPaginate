@@ -36,8 +36,6 @@ export default function SearchFn() {
               className="cancel"
               onClick={() => {
                 setSearch("");
-                setIsSearch(false);
-                setDissapper(true);
               }}
             >
               X
