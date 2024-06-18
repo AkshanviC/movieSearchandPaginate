@@ -22,7 +22,6 @@ export default function ApiGet(
           Math.floor(res?.data?.page["total-content-items"] / 20)
             ? Math.floor(res?.data?.page["total-content-items"] / 20) + 1
             : res?.data?.page["total-content-items"];
-        console.log(pageCount);
         setPage(pageCount);
       }
     })

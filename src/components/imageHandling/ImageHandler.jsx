@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { MovieContext } from "../../context/context";
-import { useInView } from "react-intersection-observer";
+import { ImageLazy } from "./component";
 
 export default function ImageHandler() {
-  const { searchData, count, search } = useContext(MovieContext);
+  const { searchData, count, search, limit, currentPage, page } =
+    useContext(MovieContext);
   const highlightText = (text, query) => {
     // Escape the query string for regular expression usage
     const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -14,45 +15,6 @@ export default function ImageHandler() {
     );
   };
 
-  const ImageLazy = ({ data, index }) => {
-    const [ref, inView] = useInView({
-      triggerOnce: true,
-      rootMargin: "100px 0px 0px 0px",
-      threshold: 1,
-    });
-    return (
-      <div
-        className={`flex-clmn movie ${
-          count.length === index + 1 || count.length === index + 2
-            ? "align-slf"
-            : ""
-        }`}
-        ref={ref}
-      >
-        {inView ? (
-          <img
-            loading="lazy"
-            className="movieImg"
-            src={`https://test.create.diagnal.com/images/${data["poster-image"]}`}
-            onError={(e) =>
-              (e.target.src =
-                "https://test.create.diagnal.com/images/placeholder_for_missing_posters.png")
-            }
-          />
-        ) : (
-          <img
-            loading="lazy"
-            className="movieImg"
-            src={
-              "https://test.create.diagnal.com/images/placeholder_for_missing_posters.png"
-            }
-          />
-        )}
-
-        <span className="movieTitle">{data?.name}</span>
-      </div>
-    );
-  };
   return (
     <div className="movieContent">
       {searchData ? (
@@ -61,7 +23,7 @@ export default function ImageHandler() {
             {searchData.map((data) => (
               <div
                 className="movie"
-                key={Math.floor(Math.random() * 734531893)}
+                key={Math.floor(Math.random() * 10000000000)}
               >
                 <img
                   className="movieImg"
@@ -92,7 +54,9 @@ export default function ImageHandler() {
             <ImageLazy
               data={data}
               index={index}
-              key={Math.floor(Math.random() * 734531893)}
+              count={count}
+              limit={limit}
+              key={Math.floor(Math.random() * 100000000)}
             />
           ))}
         </div>

@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Fuse from "fuse.js";
 import "./App.css";
 import ApiGet from "./api/api";
@@ -9,14 +9,14 @@ import ImageHandler from "./components/imageHandling/ImageHandler";
 function App() {
   const [others, setOthers] = useState("");
   const [count, setCount] = useState([]);
-  const [scrollUpdate, setScrollUpdate] = useState(1);
+  const [scrollUpdate, setScrollUpdate] = useState(false);
   const [page, setPage] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchData, setSearchData] = useState("");
   const [search, setSearch] = useState("");
   const [isSearch, setIsSearch] = useState(false);
   const [initialThrottle, setInitalThrottle] = useState(false);
-
+  let limit = false;
   const options = {
     includeScore: true,
     includeMatches: true,
@@ -25,6 +25,9 @@ function App() {
   };
 
   const fuse = new Fuse(count, options);
+
+  let lastScroll = 0;
+
   useEffect(() => {
     ApiGet(currentPage, setCount, setPage, page, setOthers);
     const onscroll = () => {
@@ -32,9 +35,10 @@ function App() {
       const threshold = 100;
       const isReachBottom =
         document.body.scrollHeight - threshold <= scrolledTo;
-      if (isReachBottom) {
+      if (isReachBottom && lastScroll < window.pageYOffset) {
         setScrollUpdate((scroll) => scroll + 1);
       }
+      lastScroll = window.pageYOffset <= 0 ? 0 : window.pageYOffset;
     };
     window.addEventListener("scroll", onscroll);
     return () => {
@@ -49,6 +53,8 @@ function App() {
       } else {
         setInitalThrottle(true);
       }
+    } else {
+      limit = true;
     }
   }, [scrollUpdate]);
   useEffect(() => {
@@ -62,7 +68,7 @@ function App() {
   }, [search]);
 
   return (
-    <>
+    <div>
       {/* <Suspense fallback={<div>Loading...</div>}> */}
       <MovieContext.Provider
         value={{
@@ -72,8 +78,11 @@ function App() {
           others,
           isSearch,
           searchData,
+          currentPage,
+          page,
           count,
           search,
+          limit,
         }}
       >
         <SearchFn />
@@ -81,7 +90,7 @@ function App() {
         <ImageHandler />
       </MovieContext.Provider>
       {/* </Suspense> */}
-    </>
+    </div>
   );
 }
 
