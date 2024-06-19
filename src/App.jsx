@@ -16,7 +16,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [isSearch, setIsSearch] = useState(false);
   const [initialThrottle, setInitalThrottle] = useState(false);
-  let limit = false;
+
   const options = {
     includeScore: true,
     includeMatches: true,
@@ -53,8 +53,6 @@ function App() {
       } else {
         setInitalThrottle(true);
       }
-    } else {
-      limit = true;
     }
   }, [scrollUpdate]);
   useEffect(() => {
@@ -82,7 +80,6 @@ function App() {
           page,
           count,
           search,
-          limit,
         }}
       >
         <SearchFn />

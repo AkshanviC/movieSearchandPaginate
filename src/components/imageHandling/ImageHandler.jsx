@@ -3,8 +3,8 @@ import { MovieContext } from "../../context/context";
 import { ImageLazy } from "./component";
 
 export default function ImageHandler() {
-  const { searchData, count, search, limit, currentPage, page } =
-    useContext(MovieContext);
+  const { searchData, count, search } = useContext(MovieContext);
+
   const highlightText = (text, query) => {
     // Escape the query string for regular expression usage
     const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -50,12 +50,9 @@ export default function ImageHandler() {
         )
       ) : (
         <div className="movieList">
-          {count?.map((data, index) => (
+          {count?.map((data) => (
             <ImageLazy
               data={data}
-              index={index}
-              count={count}
-              limit={limit}
               key={Math.floor(Math.random() * 100000000)}
             />
           ))}

@@ -7,8 +7,9 @@ export const ImageLazy = ({ data }) => {
     threshold: 1,
   });
   return (
-    <div className={`flex-clmn movie `} ref={ref}>
+    <div className={`flex-clmn movie `}>
       <img
+        ref={ref}
         loading="lazy"
         className="movieImg"
         src={`${
